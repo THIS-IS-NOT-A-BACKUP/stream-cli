@@ -1,3 +1,6 @@
+# TODO: -> add a proxy 
+#       -> add a random user agent each time
+
 # Scrapy settings for scrapping project
 #
 # For simplicity, this file contains only settings considered important or
@@ -53,6 +56,15 @@ ROBOTSTXT_OBEY = True
 #DOWNLOADER_MIDDLEWARES = {
 #    'scrapping.middlewares.ScrappingDownloaderMiddleware': 543,
 #}
+
+
+DOWNLOADER_MIDDLEWARES = {
+    # user agent middlewares
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    'scrapy_user_agents.middlewares.RandomUserAgentMiddleware': 400,
+}
+
+
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
