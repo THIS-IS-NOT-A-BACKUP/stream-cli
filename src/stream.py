@@ -1,7 +1,8 @@
-from typing import List
-import subprocess
-
 from rich.console import Console
+
+from typing import List
+import os
+
 
 console = Console()
 
@@ -39,4 +40,11 @@ def stream(magnet: str, default_player: str) -> None:
     run the process.
     """
 
-    subprocess.run(["webtorrent", magnet, f"--{default_player}"], check=True)
+    try:
+        os.system(f'webtorrent "{magnet}" --{default_player}')
+    except:
+        print(f"[red bold]Error: {default_player} is not in your PATH!", end="\n")
+        print(f"Please consider adding the default player to the right path", end="\n")
+        print("Quitting... [/red bold]")
+        exit(1)
+        
